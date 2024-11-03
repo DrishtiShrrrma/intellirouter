@@ -1,15 +1,14 @@
 
-from routers import primary_router, secondary_router, department_router
+from routers import primary_router, secondary_router, department_router, openrouter_completion
 from system_messages import department_messages
-from utils import openrouter_completion, colored_text
 
 def run_assistant():
-    print(colored_text("Welcome to MegaMart Customer Service!", "cyan"))
+    print("Welcome to MegaMart Customer Service!")
 
     while True:
-        user_input = input(colored_text("How can I assist you today? (Type 'exit' to quit): ", "cyan"))
+        user_input = input("How can I assist you today? (Type 'exit' to quit): ")
         if user_input.lower() == 'exit':
-            print(colored_text("Thank you for choosing MegaMart. Have a great day!", "cyan"))
+            print("Thank you for choosing MegaMart. Have a great day!")
             break
 
         # Route the query to the appropriate model
@@ -25,12 +24,12 @@ def run_assistant():
         else:
             department = department_router(user_input)
             system_message = department_messages.get(department, "General customer service.")
-            print(colored_text(f"Connecting you to {department.replace('_', ' ').title()} department.", "yellow"))
+            print(f"Connecting you to {department.replace('_', ' ').title()} department.")
 
         # Generate response
         response = openrouter_completion(model, user_input, system_message)
-        print(colored_text("Assistant:", "green"), response)
-        print()  # for readability
+        print("Assistant:", response)
+        print()  # Blank line for readability
 
 if __name__ == "__main__":
     run_assistant()
