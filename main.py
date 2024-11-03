@@ -30,8 +30,7 @@ def run_assistant():
         # Generate response
         response = openrouter_completion(model, user_input, system_message)
         print(colored_text("Assistant:", "green"), response)
-        print()  # Blank line for readability
+        print()  # for readability
 
 if __name__ == "__main__":
     run_assistant()
-
