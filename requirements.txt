@@ -1,0 +1,6 @@
+langchain
+groq
+langchain-groq
+openai
+streamlit
+termcolor
